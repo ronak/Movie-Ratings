@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://movierating/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://movierating/locale/overlay.dtd">
+<overlay id="movierating-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <script src="overlay.js"/>
+    <script src="ff-overlay.js"/>    
+    
+    <stringbundleset id="stringbundleset">
+        <stringbundle id="movierating-strings" src="chrome://movierating/locale/overlay.properties"/>
+    </stringbundleset>
+    
+    <popupset id="mainPopupSet">
+        <panel id="movierating-panel"
+            onpopuphidden="crm.onPanelHidden()">
+            <iframe id="movierating-iframe"
+                    src="chrome://movierating/content/display.html" />
+        </panel>
+    </popupset>
+    
+    <popup id="contentAreaContextMenu">
+        <menuitem id="context-movierating" label="&movieratingContext.label;"
+            accesskey="&movieratingContext.accesskey;"
+            insertafter="context-stop"
+            oncommand="crm.onMenuItemCommand(event)"
+            image="chrome://movierating/skin/tomato.png"
+            class="menuitem-iconic" />
+    </popup>
+</overlay>

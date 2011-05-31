@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="chrome://movierating/skin/display/default.css"> 
+        <script src="chrome://movierating/content/lib/jsimp.js"></script>
+        <script src="chrome://movierating/content/config.js"></script>
+        <script src="chrome://movierating/content/display.js"></script>
+    </head>
+    <body>
+        <div id="loading-box" class="center">
+            Loading...
+            <br />            
+        </div>
+        <div id="error" class="center"></div>
+        <div id="results" class="center">
+            <div id="first-box" class="center">
+                <div id="first-title" class="center">
+                        <div id="first-title-title"></div>
+                        <div id="first-title-year"></div>
+                </div>                        
+                <div class="center">    
+                    <div id="first-poster-box">
+                        <img id="poster" src="">
+                    </div>    
+                    <div id="first-rating-box">
+                        <div id="first-critic">
+                            <div id="first-critic-title" class="center">Critics</div>
+                            <div id="first-critic-img" class=""></div>
+                            <div id="first-critic-rating" class="center"></div>
+                        </div>
+                        <div id="first-audience">
+                            <div id="first-audience-title" class="center">Audience</div>
+                            <div id="first-audience-img" class="popcorn_med"></div>
+                            <div id="first-audience-rating" class="center"></div>
+                        </div>    
+                    </div>    
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div id="more-results-link" class="center">More results</div>
+            <div id="more-results-box" class="center">
+                <ul id="more-results-list">
+                </ul>
+                <div id="even-more-results">More results</div>
+            </div>            
+        </div>
+        <div id="footer" class="center">Powered by RottenTomatoes.com</div>        
+        <script id='get-ratings' type="text/javascript"></script>
+    </body>
+</html>

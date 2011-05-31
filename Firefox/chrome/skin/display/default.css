@@ -1,0 +1,264 @@
+/* Global */
+
+/*
+* {
+   border: 1px solid red !important;
+}
+*/    
+
+body {
+    font-family: Tahoma;
+    background-color: #D5EBFC;
+}
+
+/* Ids */
+
+#loading-box {
+    display: none;
+    width: 200px;
+    padding: 10px;
+}
+
+#results {
+    display: none;
+    overflow: auto;
+}
+
+#first-box {
+    background-color: white;
+    border: 1px solid #D6D6D6;
+    width: 200px;    
+    padding: 10px;
+}
+
+#first-title {
+    margin-bottom: 3px;    
+}
+
+#first-title:hover {
+    background-color: #ECECEC;
+    cursor: pointer;
+}
+
+#first-title-title {
+    font-size: medium;
+    font-weight: bold;
+    word-wrap: break-word;
+}
+
+#first-title-year {
+    font-size: xx-small;
+}
+
+#first-poster-box {
+    float: left;
+}
+
+#poster {
+    border: 1px solid black;
+    height: 91px;
+    width: 61px;
+}
+
+#first-rating-box {
+    float: right;
+    width: 131px;
+    margin-top: 15px;
+}
+
+#first-critic {
+    display: inline-block;
+    margin-right: 20px;
+}
+#first-critic-title {
+    font-size: xx-small;
+}
+
+#first-critic-img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#first-critic-rating {
+    font-weight: bold;
+}
+
+#first-audience {
+    display: inline-block;
+}
+
+#first-audience-title {
+    font-size: xx-small;
+}
+
+#first-audience-img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#first-audience-rating {
+    font-weight: bold;
+}
+
+#more-results-link {
+    width: 200px;
+    font-size: small;
+    text-align: center;
+    padding: 2px 10px 2px 10px;
+    cursor: pointer;
+}
+
+#more-results-box {
+    background-color: white;
+    border: 1px solid #D6D6D6;
+    width: 200px;    
+    padding: 10px;
+    display: none;
+}
+
+#more-results-box ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#more-results-box li {
+    margin-bottom: 5px;
+}
+
+#even-more-results {
+    font-size: small;
+    cursor: pointer;    
+}
+
+#result {
+    overflow: auto;
+    padding: 2px;
+    cursor: pointer;
+}
+
+#result:hover {
+    background-color: #ECECEC;
+}
+
+#result-title {
+    font-size: small;
+    font-weight: bold;
+    float: left;
+    word-wrap: break-word;
+    width: 120px;
+    text-align: left;
+}
+
+#result-title-year {
+    font-size: xx-small;
+}
+
+#result-ratings {
+    float: right;
+}
+
+#result-critic {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#result-critic-img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#result-critic-rating {
+    font-size: small;
+}
+
+#result-audience {
+    display: inline-block;
+}
+
+#result-audience-img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#result-audience-rating {
+    font-size: small;
+}
+
+#footer {
+    width: 200px;
+    text-align: center;
+    font-size: x-small;
+    cursor: pointer;
+    padding: 2px 10px 0px 10px;
+}
+
+/* Classes */
+
+.tomato_med {
+    background: transparent url("chrome://movierating/skin/display/rt_med.png") 0 0 no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.rotten_med {
+    background: transparent url("chrome://movierating/skin/display/rt_med.png") 0 -35px no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.fresh_med {
+    background: transparent url("chrome://movierating/skin/display/rt_med.png") 0 -70px no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.popcorn_med {
+    background: transparent url("chrome://movierating/skin/display/rt_med.png") 0 -105px no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.wanttosee_med {
+    background: transparent url("chrome://movierating/skin/display/rt_med.png") 0 -140px no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.tomato_sm {
+    background: transparent url("chrome://movierating/skin/display/rt_sm.png") 0 0 no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+.rotten_sm {
+    background: transparent url("chrome://movierating/skin/display/rt_sm.png") 0 -20px no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+.fresh_sm {
+    background: transparent url("chrome://movierating/skin/display/rt_sm.png") 0 -40px no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+.popcorn_sm {
+    background: transparent url("chrome://movierating/skin/display/rt_sm.png") 0 -60px no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.alt {
+    background-color: #F8F6BB;
+}

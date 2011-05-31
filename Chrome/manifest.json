@@ -1,0 +1,20 @@
+{
+    "name": "Movie Ratings",
+    "version": "1.2",
+    "description": "Retrieve movie ratings from Rotten Tomatoes.",
+    "icons": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+    "background_page": "background.html",
+    "permissions": [
+        "contextMenus",
+        "tabs"
+    ],
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["listeners.js"],
+        "run_at": "document_end"
+    }]
+}

@@ -1,0 +1,6 @@
+content   movierating                 chrome/content/
+skin      movierating   classic/1.0   chrome/skin/
+locale    movierating   en-US         chrome/locale/en-US/
+
+
+overlay   chrome://browser/content/browser.xul   chrome://movierating/content/ff-overlay.xul
