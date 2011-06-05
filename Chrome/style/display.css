@@ -11,8 +11,6 @@ body {
     background-color: #D5EBFC;
 }
 
-/* Ids */
-
 #loading-box {
     display: none;
     width: 200px;
@@ -63,7 +61,7 @@ body {
 #first-rating-box {
     float: right;
     width: 131px;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 #first-critic {
@@ -100,6 +98,20 @@ body {
     font-weight: bold;
 }
 
+#first-imdb {
+    margin-top: 5px;
+    font-size: small;
+    display: none;
+}
+
+#first-imdb-rating {
+    cursor: pointer;
+}
+
+#first-imdb-rating:hover {
+    background-color: #ECECEC;
+}
+
 #more-results-link {
     width: 200px;
     font-size: small;
@@ -114,6 +126,7 @@ body {
     width: 200px;    
     padding: 10px;
     display: none;
+    margin-top: 5px;
 }
 
 #more-results-box ul {
@@ -131,17 +144,17 @@ body {
     cursor: pointer;    
 }
 
-#result {
+.result {
     overflow: auto;
     padding: 2px;
     cursor: pointer;
 }
 
-#result:hover {
+.result:hover {
     background-color: #ECECEC;
 }
 
-#result-title {
+.result-title {
     font-size: small;
     font-weight: bold;
     float: left;
@@ -150,39 +163,44 @@ body {
     text-align: left;
 }
 
-#result-title-year {
+.result-title-year {
     font-size: xx-small;
 }
 
-#result-ratings {
+.result-ratings {
     float: right;
 }
 
-#result-critic {
+.result-critic {
     display: inline-block;
     margin-right: 5px;
 }
 
-#result-critic-img {
+.result-critic-img {
     margin-left: auto;
     margin-right: auto;
 }
 
-#result-critic-rating {
+.result-critic-rating {
     font-size: small;
 }
 
-#result-audience {
+.result-audience {
     display: inline-block;
 }
 
-#result-audience-img {
+.result-audience-img {
     margin-left: auto;
     margin-right: auto;
 }
 
-#result-audience-rating {
+.result-audience-rating {
     font-size: small;
+}
+
+.result-imdb {
+    font-size: x-small;
+    display: none;
 }
 
 #footer {
@@ -245,6 +263,12 @@ body {
 
 .popcorn_sm {
     background: transparent url("../images/rt_sm.png") 0 -60px no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+.wanttosee_sm {
+    background: transparent url("../images/rt_sm.png") 0 -80px no-repeat;
     width: 20px;
     height: 20px;
 }
