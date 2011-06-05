@@ -70,9 +70,8 @@ var MovieRatings = (function() {
                 createMoreResult(movie, i % 2 == 0 ? true : false, i)                
             );
             
-            
-            if (Date.parse(movie.release_dates.theater) <= _currentDate)               
-                _movieTitles.push({'id':i,'title':movie.title});            
+                             
+            _movieTitles.push({'id':i,'title':movie.title});            
             
             resultList.append(li);
         }    
