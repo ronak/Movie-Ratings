@@ -4,7 +4,7 @@
     main();
     
     function main() {
-        // add more error handling..try/catch for missing parameter
+        // add more error handling..try/catch for missing parameter 
         // add caching
         $movie = $_GET['movie'];    
         $callback = $_GET['callback'];  
