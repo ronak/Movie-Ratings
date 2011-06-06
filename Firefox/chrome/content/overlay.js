@@ -60,7 +60,7 @@ crm = {
             if (this.isDefined(selection))
                 url += selection;
             iframe.setAttribute("src", url);            
-            panel.openPopup(anchor, "before_end", -20, 2, false, false);                
+            panel.openPopup(anchor, "before_end", -20, -20, false, false);                
         }
     },
     

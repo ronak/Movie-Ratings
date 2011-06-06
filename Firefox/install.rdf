@@ -4,7 +4,7 @@
         <em:id>movierating@ronakpatel.net</em:id>
         <em:type>2</em:type>
         <em:name>Movie Ratings</em:name>
-        <em:version>1.5.5</em:version>
+        <em:version>1.5.7</em:version>
         <em:creator>Ronak Patel</em:creator>
         <em:contributor></em:contributor>
         <em:description>This extension lets you view the Rotten Tomatoes rating for a movie.</em:description>

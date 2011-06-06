@@ -23,7 +23,11 @@
 */
 
 var MovieRatings = (function() {    
-    var movie = '';
+    var _rImdbRating = /\d+\.\d\/10/;
+    var _rImdbLink = /www\.imdb\.com\/title\/[a-z0-9]*/;
+    var _movie = '';
+    var _movieTitles = [];
+    var _currentDate = new Date();
 
     var loadMainResult = function(movie) {    
         $('#first-title-title').text(movie.title);
@@ -53,6 +57,7 @@ var MovieRatings = (function() {
             $('#first-critic-rating').text('N/A');
             
         $('#first-audience-rating').text(movie.ratings.audience_score+'%');        
+        getImdbRating(movie.title, '#first-imdb', '#first-imdb-rating');
     }
     
     var loadMoreResults = function(results) {
@@ -61,39 +66,45 @@ var MovieRatings = (function() {
             
             var resultList = $('#more-results-list');        
             var li = $('<li>');
-            li.append(createMoreResult(movie, i % 2 == 0 ? true : false));
+            li.append(createMoreResult(movie, i % 2 == 0 ? true : false, i));
+            
+            _movieTitles.push({'id':i,'title':movie.title});   
             
             resultList.append(li);
         }    
     }
     
-    var createMoreResult = function(movie, alternate) {
+    var createMoreResult = function(movie, alternate, idNum) {
         // Create result box
-        var result = $('<div>',{id:'result'});
+        var result = $('<div>',{'class':'result'});
         if (alternate)
-            result.attr('class','alt');
+            result.attr('class','result alt');
         
         // Create result title
-        var title = moreResult.Title(movie.title, movie.year);
+        var title = MoreResult.Title(movie.title, movie.year);
         
         // Create result ratings
-        var ratings = $('<div>',{id: 'result-ratings'});
+        var ratings = $('<div>',{'class': 'result-ratings'});
             
         // Create critic rating    
-        var critic = moreResult.CriticRating(movie.ratings.critics_score);
+        var critic = MoreResult.CriticRating(movie.ratings.critics_score);
         
         // Create audience rating
-        var audience = moreResult.AudienceRating(
+        var audience = MoreResult.AudienceRating(
             movie.ratings.audience_score,
             movie.release_dates.theater
         );
         
+        // Create IMDb rating box
+        var imdb = MoreResult.ImdbRating(idNum);        
+        
         ratings.append(critic);
         ratings.append(audience);
+        ratings.append(imdb);
         
         result.append(title);
         result.append(ratings);        
-        result.append($('<div>',{className:'clear'}));
+        result.append($('<div>',{'class':'clear'}));
         
         result.click(function() {
             Util.openUrl(movie.links.alternate);
@@ -102,28 +113,26 @@ var MovieRatings = (function() {
         return result;
     }
     
-    var moreResult = {
+    var MoreResult = {
         Title: function (movieTitle, movieYear) {
-            var title = $('<div>',{id: 'result-title', text: movieTitle + ' '});    
-            var year = $('<span>',{id: 'result-title-year', text: '(' + movieYear + ')'});    
+            var title = $('<div>',{'class': 'result-title', text: movieTitle + ' '});    
+            var year = $('<span>',{'class': 'result-title-year', text: '(' + movieYear + ')'});    
             title.append(year);
             
             return title;
         },
         
         CriticRating: function(criticsScore) {
-            var critic = $('<div>',{id: 'result-critic'});
+            var critic = $('<div>',{'class': 'result-critic'});
             
             var rating = criticsScore;
-            var criticRatingImg = $('<div>',{
-                id: 'result-critic-img',
-                'class': rating >= 60 ? 'tomato_sm' : 'rotten_sm'
+            var criticRatingImg = $('<div>',{                
+                'class': rating >= 60 ? 'tomato_sm' : 'rotten_sm' + ' result-critic-img'
             });
             if (rating == -1) criticRatingImg.removeAttr('class');
-            var criticRating = $('<div>',{
-                id: 'result-critic-rating',
+            var criticRating = $('<div>',{                
                 text: rating == -1 ? 'N/A' : rating + '%',
-                'center': 'center'
+                'class': 'center result-critic-rating'
             });
             critic.append(criticRatingImg);
             critic.append(criticRating);    
@@ -132,27 +141,57 @@ var MovieRatings = (function() {
         },
         
         AudienceRating: function(audienceScore, releaseDate) {
-            var audience = $('<div>',{id: 'result-audience'});
-            var release = Date.parse(releaseDate);
+            var audience = $('<div>',{'class': 'result-audience'});
             var audienceRatingImg = $('<div>',{
-                id: 'result-audience-img',
-                'class': release >= new Date() ? 'wanttosee_sm' : 'popcorn_sm'
+                'class': Date.parse(releaseDate) > new Date() ? 'wanttosee_sm' : 'popcorn_sm' + ' result-audience-img'
             });
-            var audienceRating = $('<div>',{
-                id:'result-audience-rating', 
+            var audienceRating = $('<div>',{                
                 text: audienceScore+'%',
-                'class': 'center'
+                'class': 'center result-audience-rating'
             });
             audience.append(audienceRatingImg);
             audience.append(audienceRating);    
 
             return audience;
+        },
+        
+        ImdbRating: function(idNum) {
+            var imdb = $('<div>',{
+                id: 'result-imdb-'+idNum,
+                'class': 'result-imdb',
+                text: 'IMDb: '
+            });
+            var imdbRating = $('<span>',{
+                id: 'result-imdb-rating-'+idNum
+            });
+            imdb.append(imdbRating);
+            
+            return imdb;
         }
+    }
+    
+    var getImdbRating = function(movie, imdbDivId, imdbRatingDivId) {     
+        $.ajax({
+            url: "http://www.google.com/search?q=" + encodeURI(movie + ' site:imdb.com'),
+            success: function(html) {
+                var rating = _rImdbRating.exec(html);
+                var link = _rImdbLink.exec(html);
+    
+                if (!Util.isDefined(rating))
+                    rating = 'N/A';
+                
+                $(imdbRatingDivId).text(escape(rating)); 
+                $(imdbRatingDivId).click(function() {
+                    Util.openUrl('http://' + link);
+                });
+                $(imdbDivId).show();       
+            }
+        });
     }
 
     return {
         init: function(m) {
-            movie = m;
+            _movie = m;
         },
     
         loadResults: function(ratings) {                        
@@ -163,17 +202,21 @@ var MovieRatings = (function() {
                     loadMoreResults(ratings.movies);
                             
                     $('#more-results-link').click(function() {                    
-                        $('#more-results-link').text(
-                            $('#more-results-link').text() 
-                                == 'More results' ? 'Hide results' : 'More results'
-                        );
+                        $('#more-results-link').hide();                        
+                        $('#more-results-box').show();        
+                    
+                        for (var i = 0; i < _movieTitles.length; i++) {
+                            var title = _movieTitles[i].title;
+                            var id = _movieTitles[i].id;
                         
-                        $('#more-results-box').toggle();                                                
+                            getImdbRating(title, '#result-imdb-'+id, '#result-imdb-rating-'+id);
+                        }  
+                                            
                     });
                     
                     if (ratings.total > 10) {
                         $('#even-more-results').click(function() {
-                            Util.openUrl('http://www.rottentomatoes.com/search/full_search.php?search='+movie);
+                            Util.openUrl('http://www.rottentomatoes.com/search/full_search.php?search='+_movie);
                         });
                         $('#even-more-results').show();
                     } else {
@@ -226,9 +269,7 @@ if (document.addEventListener) {
         if (parameters) {
             movie = $.parseQuery().movie;
             url = Config.Url + '?callback=MovieRatings.loadResults&movie=' + encodeURI(movie);    
-        }
-        
-        MovieRatings.loadFooter();
+        }       
         
         if (Util.isDefined(movie)) {
             MovieRatings.init(movie);            
@@ -240,6 +281,8 @@ if (document.addEventListener) {
             $('#loading-box').text('Please select a movie.');
             $('#loading-box').show();
         }
+        
+        MovieRatings.loadFooter();
     }, false);
 }
 
