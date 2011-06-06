@@ -26,9 +26,7 @@ if (!com) var com = {};
 if (!com.ronakpatel) com.ronakpatel = {};
 if (!com.ronakpatel.movierating) com.ronakpatel.movierating = {};    
 
-var crm = com.ronakpatel.movierating;
-
-crm = {
+com.ronakpatel.movierating = {
     $ : function(id) {
         return document.getElementById(id);
     },
@@ -115,5 +113,5 @@ crm = {
     }
 };
 
-window.addEventListener("load", function () { crm.onLoad(); }, false);
-window.addEventListener("unload", function() { crm.onUnload(); }, false);
+window.addEventListener("load", function () { com.ronakpatel.movierating.onLoad(); }, false);
+window.addEventListener("unload", function() { com.ronakpatel.movierating.onUnload(); }, false);

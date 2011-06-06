@@ -11,7 +11,7 @@
     
     <popupset id="mainPopupSet">
         <panel id="movierating-panel"
-            onpopuphidden="crm.onPanelHidden()">
+            onpopuphidden="com.ronakpatel.movierating.onPanelHidden()">
             <iframe id="movierating-iframe"
                     src="chrome://movierating/content/display.html" />
         </panel>
@@ -21,7 +21,7 @@
         <menuitem id="context-movierating" label="&movieratingContext.label;"
             accesskey="&movieratingContext.accesskey;"
             insertafter="context-stop"
-            oncommand="crm.onMenuItemCommand(event)"
+            oncommand="com.ronakpatel.movierating.onMenuItemCommand(event)"
             image="chrome://movierating/skin/tomato.png"
             class="menuitem-iconic" />
     </popup>

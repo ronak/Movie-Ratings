@@ -22,14 +22,14 @@
     THE SOFTWARE.
 */
 
-crm.onFirefoxLoad = function(event) {
+com.ronakpatel.movierating.onFirefoxLoad = function(event) {
     document.getElementById("contentAreaContextMenu")
-        .addEventListener("popupshowing", function (e){ crm.showFirefoxContextMenu(e); }, false);
+        .addEventListener("popupshowing", function (e){ com.ronakpatel.movierating.showFirefoxContextMenu(e); }, false);
 };
 
-crm.showFirefoxContextMenu = function(event) {
+com.ronakpatel.movierating.showFirefoxContextMenu = function(event) {
     // show or hide the menuitem based on what the context menu is on
     document.getElementById("context-movierating").hidden = gContextMenu.onImage;
 };
 
-window.addEventListener("load", function () { crm.onFirefoxLoad(); }, false);
+window.addEventListener("load", function () { com.ronakpatel.movierating.onFirefoxLoad(); }, false);
