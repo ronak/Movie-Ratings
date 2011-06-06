@@ -58,7 +58,7 @@ var MovieRatings = (function() {
             
         $('#first-audience-rating').text(movie.ratings.audience_score+'%');        
         
-        getImdbRating(movie.title, '#first-imdb', '#first-imdb-rating');
+        getImdbRating(movie.title, movie.year, '#first-imdb', '#first-imdb-rating');
     }
     
     var loadMoreResults = function(results) {        
@@ -71,7 +71,7 @@ var MovieRatings = (function() {
             );
             
                              
-            _movieTitles.push({'id':i,'title':movie.title});            
+            _movieTitles.push({'id':i,'title':movie.title,'year':movie.year});            
             
             resultList.append(li);
         }    
@@ -173,13 +173,14 @@ var MovieRatings = (function() {
         }
     }
     
-    var getImdbRating = function(movie, imdbDivId, imdbRatingDivId) {     
+    var getImdbRating = function(movie, year, imdbDivId, imdbRatingDivId) {     
+        var movieSearch = movie + ' (' + year + ')';
         $.ajax({
-            url: "http://www.google.com/search?q=" + encodeURI(movie + ' site:imdb.com'),
+            url: "http://www.google.com/search?q=" + encodeURI(movieSearch + ' site:imdb.com'),
             success: function(html) {
                 var rating = _rImdbRating.exec(html);
                 var link = _rImdbLink.exec(html);
-    
+
                 if (!Util.isDefined(rating))
                     rating = 'N/A';
                 
@@ -210,8 +211,9 @@ var MovieRatings = (function() {
                        
                         for (var i = 0; i < _movieTitles.length; i++) {
                             var title = _movieTitles[i].title;
+                            var year = _movieTitles[i].year;
                             var id = _movieTitles[i].id;
-                            getImdbRating(title, '#result-imdb-'+id, '#result-imdb-rating-'+id);
+                            getImdbRating(title, year, '#result-imdb-'+id, '#result-imdb-rating-'+id);
                         }                        
                     });
                     

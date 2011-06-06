@@ -1,6 +1,6 @@
 {
     "name": "Movie Ratings",
-    "version": "1.2",
+    "version": "1.5.7",
     "description": "Retrieve movie ratings from Rotten Tomatoes.",
     "icons": {
         "16": "images/icon16.png",
