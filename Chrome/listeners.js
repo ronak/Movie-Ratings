@@ -53,6 +53,7 @@ function createBox() {
     box.style.right = "10px";
     box.style.display = "display";
     box.style.border = "2px solid black";
+    box.style.width = "300px";
         
     document.body.addEventListener("click", function(e) {
         if(e.target.id !== "rpnet_mrBox") {    

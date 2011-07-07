@@ -172,22 +172,27 @@ var MovieRatings = (function() {
     }
     
     var getImdbRating = function(movie, year, imdbDivId, imdbRatingDivId) {     
-        var movieSearch = movie + ' (' + year + ')';
-        
+        var movieSearch = movie + ' (' + year + ')';        
         $.ajax({
             url: "http://www.google.com/search?q=" + encodeURI(movieSearch + ' site:imdb.com'),
             success: function(html) {
-                var rating = _rImdbRating.exec(html);
-                var link = _rImdbLink.exec(html);
-   
-                if (!Util.isDefined(rating))
-                    rating = 'N/A';
+                var link = 'http://' + _rImdbLink.exec(html);
                 
-                $(imdbRatingDivId).text(escape(rating)); 
-                $(imdbRatingDivId).click(function() {
-                    Util.openUrl('http://' + link);
-                });
-                $(imdbDivId).show();       
+                $.ajax({
+                    url: link,
+                    success: function(html) {
+                        var rating = _rImdbRating.exec(html);
+                   
+                        if (!Util.isDefined(rating))
+                            rating = 'N/A';
+                        
+                        $(imdbRatingDivId).text(escape(rating)); 
+                        $(imdbRatingDivId).click(function() {
+                            Util.openUrl(link);
+                        });
+                        $(imdbDivId).show();       
+                    }
+                });               
             }
         });
     }
