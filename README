@@ -1,17 +1,17 @@
-Description:
+Description
+===========
 These browser extensions allow you to easily retrieve the 
 Rotten Tomatoes and IMDb ratings for a
 specified movie.
 
-Usage: 
+Usage
+=====
 Highlight the name of a movie, right click, and 
 select 'Get Movie Rating' from the context menu. If the 
 name of a movie appears as a link you can forgo 
 highlighting it and just right click on the link.
 
-Browsers supported:
+Browsers Supported
+==================
 - Firefox - https://addons.mozilla.org/en-US/firefox/addon/movie-ratings/
 - Chrome - https://chrome.google.com/webstore/detail/pfmcppclannbbilgigjlodcjkkohjiom
-
-Todo:
-- Add caching solution for Rotten Tomatoes ratings

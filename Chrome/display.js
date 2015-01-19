@@ -30,7 +30,7 @@ var MovieRatings = (function() {
     var _currentDate = new Date();
 
     var loadMainResult = function(movie) {    
-                $('#first-title-title').text(movie.title);
+        $('#first-title-title').text(movie.title);
         $('#first-title-year').text('(' + movie.year + ')');
         
         $('#first-title').click(function() {            
@@ -176,15 +176,13 @@ var MovieRatings = (function() {
     var getImdbRating = function(movie, year, imdbDivId, imdbRatingDivId) {     
         var movieSearch = movie + ' (' + year + ')';
         $.ajax({
-            url: "http://www.google.com/search?q=" + encodeURI(movieSearch + ' site:imdb.com'),
+            url: "https://www.google.com/search?q=" + encodeURI(movieSearch + ' site:imdb.com'),
             success: function(html) {                
                 var link = _rImdbLink.exec(html);
                 
                 $.ajax({
-                    url: 'http://' + link,
-                    success: function(html) {
-                        var rating = _rImdbRating.exec(html);
-                   
+                    url: Config.Url + '/imdb?link=' + link,
+                    success: function(rating) {
                         if (!Util.isDefined(rating))
                             rating = 'N/A';
                         
@@ -225,7 +223,7 @@ var MovieRatings = (function() {
                     
                     if (ratings.total > 10) {
                         $('#even-more-results').click(function() {
-                            Util.openUrl('http://www.rottentomatoes.com/search/full_search.php?search='+_movie);
+                            Util.openUrl('http://www.rottentomatoes.com/search/?search='+_movie);
                         });
                         $('#even-more-results').show();
                     } else {
@@ -270,7 +268,7 @@ var Util = (function() {
 
 $(document).ready(function() {
     var movie = $.parseQuery().movie;
-    var url = Config.Url + '?callback=MovieRatings.loadResults&movie=' + encodeURI(movie);    
+    var url = Config.Url + '/rt?callback=MovieRatings.loadResults&movie=' + encodeURI(movie);    
     
     if (Util.isDefined(movie)) {
         MovieRatings.init(movie);
